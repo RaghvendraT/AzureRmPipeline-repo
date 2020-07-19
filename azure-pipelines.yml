@@ -20,7 +20,7 @@ steps:
     location: 'West Europe'
     templateLocation: 'Linked artifact'
     csmFile: 'CreateWebApp/azuredeploy.json'
-    overrideParameters: '-projectName test-pipeline-lkio -linkedTemplateUri https://raw.githubusercontent.com/RaghvendraT/AzureRmPipeline-repo/master/CreateWebapp/linkedStorageAccount.json'
+    overrideParameters: '-projectName l-p-a test -linkedTemplateUri https://raw.githubusercontent.com/RaghvendraT/AzureRmPipeline-repo/master/CreateWebapp/linkedStorageAccount.json'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'
 
