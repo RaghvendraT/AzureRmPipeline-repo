@@ -1,0 +1,30 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'LPA testing prod'
+    subscriptionId: '8f0546e1-8a9a-4cb4-9763-9d9f69ad2718'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'test-pipeline-first'
+    location: 'West Europe'
+    templateLocation: 'Linked artifact'
+    csmFile: 'CreateWebApp/azuredeploy.json'
+    overrideParameters: '-projectName [test-pipeline-lkio] -linkedTemplateUri [https://raw.githubusercontent.com/RaghvendraT/AzureRmPipeline-repo/master/CreateWebapp/linkedStorageAccount.json]'
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipelineTemplate'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
